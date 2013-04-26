@@ -1,13 +1,15 @@
 {
     "name": "bear/ace",
-    "description":"Ace online editors",
-    "keywords":[
-        "editor",
-        "ace editor"
-    ],
-    "autoload":{
-        "psr-0":{
-            "BEAR\\Ace": "src/"
+    "description": "Ace online editor utility",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Akihito Koriyama",
+            "email": "akihito.koriyama@gmail.com"
         }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+
     }
 }
