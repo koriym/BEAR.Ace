@@ -1,0 +1,13 @@
+{
+    "name": "bear/ace",
+    "description":"Ace online editors",
+    "keywords":[
+        "editor",
+        "ace editor"
+    ],
+    "autoload":{
+        "psr-0":{
+            "BEAR\\Ace": "src/"
+        }
+    }
+}
