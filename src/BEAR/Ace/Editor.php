@@ -142,7 +142,7 @@ class Editor
                 $rootPath = '/';
             } else {
                 error_log("[BEAR.Ace] 404: {$fileFullPath}");
-                throw new Exception('Not found', 404);
+                throw new Exception('Not found ' . $fileFullPath, 404);
             }
         }
         $this->setPath($file);
@@ -153,7 +153,7 @@ class Editor
 
             return (string)($this->setLine($line));
         }
-error_log($server['REQUEST_METHOD']);
+        error_log($server['REQUEST_METHOD']);
         // or save
         return (string)($this->setSaveUrl('index.php')->save($post['contents']));
     }
@@ -180,7 +180,7 @@ error_log($server['REQUEST_METHOD']);
             $this->rootPath = '/';
         } else {
             error_log("[BEAR.Ace] 404: {$fileFullPath}");
-            throw new Exception('Not found', 404);
+            throw new Exception('Not found ' . $fileFullPath, 404);
         }
 
         return $this;
