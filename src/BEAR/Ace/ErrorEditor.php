@@ -42,12 +42,13 @@ class ErrorEditor
                 ob_end_clean();
                 $rootPath = '/';
                 $message .= " on line {$line} in";
+                $selfUrl = "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]. ':' . $_SERVER['REMOTE_PORT'];
                 echo (new Editor)
                     ->setRootPath($rootPath)
                     ->setPath($file)
                     ->setLine($line)
                     ->setMessage($message)
-                    ->setSaveUrl('save.php')
+                    ->setSaveUrl($selfUrl)
                     ->enableReloadAfterSave();
                 exit(0);
             }
@@ -78,12 +79,15 @@ class ErrorEditor
             && isset($server['HTTP_X_BEAR_ACE']);
 
         if ($isBearAceSave) {
-            $post = $post ?: $_POST;
-            (string)(new Editor)
-                ->setRootPath('/')
-                ->setPath($post['file'])
-                ->save($post['contents']);
-            exit(0);
+            try {
+                $post = $post ?: $_POST;
+                (string)(new Editor)
+                    ->setRootPath('/')
+                    ->setPath($post['file'])
+                    ->save($post['contents']);
+                exit(0);
+            } catch (Exception $e) {
+            }
         }
 
         // register syntax error editor
