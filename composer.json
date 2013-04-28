@@ -1,6 +1,11 @@
 {
     "name": "bear/ace",
     "description": "Ace online editor utility",
+    "keywords":[
+        "editor",
+        "ace",
+        "online editor"
+    ],
     "license": "BSD-3-Clause",
     "authors": [
         {
