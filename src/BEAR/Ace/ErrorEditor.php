@@ -28,9 +28,6 @@ class ErrorEditor
             if (PHP_SAPI === 'cli') {
                 return;
             }
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['save']) {
-
-            }
             $type = $message = $file = $line = $trace = '';
             $error = error_get_last();
             if (!$error) {
