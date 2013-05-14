@@ -12,8 +12,8 @@ return <<<EOT
     <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
     <link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
-    <script src="//d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+    <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
     <script>
         $("body").bind("ajaxSend", function(elm, xhr, s){
             if (s.type == "POST") {
