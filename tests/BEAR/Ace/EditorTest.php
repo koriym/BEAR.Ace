@@ -146,4 +146,11 @@ class EditorTest extends \PHPUnit_Framework_TestCase
         (string)$this->editor->setRootPath(__DIR__)->handle($get, $post, $server);
     }
 
+    public function testSetObject()
+    {
+        require __DIR__ . '/FooClass.php';
+        $foo = new \FooClass;
+        $html = (string)$this->editor->setObject($foo);
+        $this->assertContains('class FooClass', $html);
+    }
 }

@@ -235,4 +235,20 @@ class Editor
 
         return $this;
     }
+
+    /**
+     * @param $object
+     *
+     * @throws Exception
+     */
+    public function setObject($object, $method  = null)
+    {
+        if (! is_object($object)) {
+            throw new Exception('not object');
+        }
+        $file = (new \ReflectionObject($object))->getFileName();
+        $this->setPath($file);
+
+        return $this;
+    }
 }
