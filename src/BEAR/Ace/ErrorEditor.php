@@ -2,7 +2,6 @@
 /**
  * This file is part of the BEAR.Ace package
  *
- * @package BEAR.Ace
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
 namespace BEAR\Ace;
@@ -35,29 +34,21 @@ class ErrorEditor
             }
             extract($error);
             // redirect
-            if ($type == E_PARSE) {
-                ob_end_clean();
-                $rootPath = '/';
-                $message .= " on line {$line} in";
-                $selfUrl = "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]. ':' . $_SERVER['REMOTE_PORT'];
-                echo (new Editor)
-                    ->setRootPath($rootPath)
-                    ->setPath($file)
-                    ->setLine($line)
-                    ->setMessage($message)
-                    ->setSaveUrl($selfUrl)
-                    ->enableReloadAfterSave();
-                exit(0);
-            }
-            // Logic error only
-            if (!in_array($type, [E_COMPILE_ERROR, E_CORE_ERROR, E_ERROR])) {
+            if ($type !== E_PARSE) {
                 return;
             }
-            error_log(ob_get_clean());
-            http_response_code(500);
-            $html = require __DIR__ . '/ErrorEditor/view.php';
-            echo $html;
-            exit(1);
+            ob_end_clean();
+            $rootPath = '/';
+            $message .= " on line {$line} in";
+            $selfUrl = "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]. ':' . $_SERVER['REMOTE_PORT'];
+            echo (new Editor)
+                ->setRootPath($rootPath)
+                ->setPath($file)
+                ->setLine($line)
+                ->setMessage($message)
+                ->setSaveUrl($selfUrl)
+                ->enableReloadAfterSave();
+            exit(0);
         };
     }
 

@@ -13,8 +13,8 @@
             "email": "akihito.koriyama@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {
-
+    "autoload": {
+        "psr-0": { "BEAR\\Ace": "src" },
+        "files": ["src/edit.php"]
     }
 }

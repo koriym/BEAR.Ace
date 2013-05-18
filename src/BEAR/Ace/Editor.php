@@ -2,7 +2,6 @@
 /**
  * This file is part of the BEAR.Ace package
  *
- * @package BEAR.Ace
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
 namespace BEAR\Ace;
@@ -233,6 +232,22 @@ class Editor
     public function setSaveUrl($saveUrl)
     {
         $this->saveUrl = $saveUrl;
+
+        return $this;
+    }
+
+    /**
+     * @param $object
+     *
+     * @throws Exception
+     */
+    public function setObject($object, $method  = null)
+    {
+        if (! is_object($object)) {
+            throw new Exception('not object');
+        }
+        $file = (new \ReflectionObject($object))->getFileName();
+        $this->setPath($file);
 
         return $this;
     }
