@@ -58,6 +58,20 @@ Syntax Error Editor
 ```
 ![Editor](https://raw.github.com/koriym/BEAR.Ace/gh-pages/assets/syntax_error.png)
 
+edit();
+-------------------
+
+edit関数でファイルをエディターで見る事ができます。引き数にはファイルパスまたはオブジェクトを指定します。
+
+```php
+$file = __DIR__ . 'file.php';
+edit($file);
+```
+
+```php
+$a = new A;
+edit($a);
+```
 
 xdebug.file_link_format
 -----------------------
