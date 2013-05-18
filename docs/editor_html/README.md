@@ -1,2 +1,7 @@
-$ php ObjectEdit.php > object_edit.html
-$ php TextEdit.php > text_edit.html
+try
+
+$ php -S localhost:8088 ObjectEdit.php
+
+$ php -S localhost:8088 TextEdit.php
+
+$ php -S localhost:8088 TextEdit.php
