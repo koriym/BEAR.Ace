@@ -153,4 +153,12 @@ class EditorTest extends \PHPUnit_Framework_TestCase
         $html = (string)$this->editor->setObject($foo);
         $this->assertContains('class FooClass', $html);
     }
+
+    public function testEditFunction()
+    {
+        $foo = new \FooClass;
+        $html = edit($foo, true);
+        $this->assertContains('class FooClass', $html);
+    }
+
 }
