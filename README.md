@@ -5,7 +5,7 @@ Ace online editor utility for PHP
 ----------------------------------
 
 BEAR.AceはオンラインエディターAceのユーティリティです。
-オンラインファイル編集webサービスを開始したり、シンタックスエラーをその場でオンライン修正したりできます。
+エディターwebサービスやシンタックスエラーのオンライン修正が可能です。
 
 BEAR.Ace is the Ace utility for PHP. ([Ace](https://github.com/ajaxorg/ace) is a standalone code editor written in JavaScript. )
 It enable to start online editor web service, fix syntax error on the spot.
