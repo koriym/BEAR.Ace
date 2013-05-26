@@ -4,41 +4,42 @@ BEAR.Ace
 Ace Online editor utility for PHP
 ----------------------------------
 
-[Ace](https://github.com/ajaxorg/ace) is a standalone code editor written in JavaScript. BEAR.Ace is the PHP utility for Ace.  
-[Ace](https://github.com/ajaxorg/ace) はJavaScriptでかかれたスタンドアロンのコードエディターです。 BEAR.Ace はPHPでAceを便利に使うためのユーティリティです。
+BEAR.AceはオンラインエディターAceのユーティリティです。
+オンラインファイル編集webサービスを開始したり、シンタックスエラーをその場でオンライン修正したりできます。
+
+BEAR.Ace is the Ace utility for PHP. ([Ace](https://github.com/ajaxorg/ace) is a standalone code editor written in JavaScript. )
+It enable to start online editor web service, fix syntax error on the spot.
 
 Getting started
 ===============
 
 Start online editor web service.  
-オンラインエディタを起動します。
 
 ```
 $ cd BEAR.Ace/web
 $ php -S localhost:8090 index.php
 ```
 
- Access editor with 'file' (and 'line') query.    
- file,lineクエリーを使ってファイルにアクセスできます。
+You can browse file content with 'file' and 'line' (optional) query.    
 
 ![Editor](https://raw.github.com/koriym/BEAR.Ace/gh-pages/assets/editor.png)
 
-You can save the document if web server has permission to save.  
-webサーバーに書き込み権限があるときは保存も行えます。Windows/OSXそれぞれのショートカットキーにも対応しています。
+You can aslo save when you have write access to the web server. It supports save shortcut keys for Windows(Ctl+S) / OSX(Cmd+S).
 
-Configuration
--------------
+Sample Code
+-----------
 
-エディタを表示するためのHTMLを取得します。
+Get the HTML to display the editor.
 
 ```php
 $html = (string)(new Editor)->setRootPath($rootPath)->setPath($file)->setLine($line);
 ```
-$fileは$rootPathからの相対パス、または絶対パスを指定できます。また$rootPathより上位のファイルにはアクセスできません。
+
+You can specify $file in absolute path or relative path from $rootPath.
+You will not be able to access the files at higher than $rootPath for security reason.
 
 
-オンラインエディターサービスを開始します。
-
+You can start online service in this code.
 ```php
 try {
     $editor = (new Editor)->setRootPath($rootPath)->handle($_GET, $_POST, $_SERVER);
@@ -48,10 +49,11 @@ try {
     echo $e->getCode();
 }
 ```
+You can find more sample code in /docs/ folder.
 
 Syntax Error Editor
 -------------------
-エラーハンドラーを登録すると、Syntax Errorの時にエラー表示するだけでなくそのその場で修正ができます。保存をするとリロードが自動でされ、ケアレスミスによるフラストレーションと時間を最小化します。
+When you register an error handler, you can fix on the place to not only display an error when the Syntax Error.Reload is automatically when you save, it will minimize the time and frustration by careless mistake.
 
 ```php
 (new \BEAR\Ace\ErrorEditor)->registerSyntaxErrorEdit();
@@ -60,8 +62,7 @@ Syntax Error Editor
 
 edit();
 -------------------
-
-edit関数でファイルをエディターで見る事ができます。引き数にはファイルパスまたはオブジェクトを指定します。
+You can see file content in an editor in the edit function. Specify the object or file path in the argument.
 
 ```php
 $file = __DIR__ . 'file.php';
@@ -75,12 +76,40 @@ edit($a);
 
 xdebug.file_link_format
 -----------------------
-xdebugのini設定でstack traceのファイル名をオンラインエディターにリンクすることができます。
+You can link to online editor the file name of the stack trace in this ini configuration of xdebug.
 
 ```php
-xdebug.file_link_format=localhost:8070/?file=%f&line=$l
+xdebug.file_link_format=localhost:8090/?file=%f&line=$l
 ```
 
+Symfony integration for sytanx error editor
+-------------------------------------------
+
+1) add "bear / ace" to composer.json, then install it with composer command.
+```php
+    "require": {
+        ...
+        "bear/ace": "*"
+    },
+```
+```bash
+$ composer update bear/ace
+```
+
+2) register a syntax error editor in web/app_dev.php.
+```php
+
+require_once __DIR__.'/../app/AppKernel.php';
+// after this line
+
+(new \BEAR\Ace\ErrorEditor)->registerSyntaxErrorEdit();
+
+// before this line
+$kernel = new AppKernel('dev', true);
+```
+
+3) That's it ! You can fix the syntax error on the spot.
+
 Requirements
----------
+------------
  * PHP 5.4+
