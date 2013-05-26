@@ -1,7 +1,7 @@
 BEAR.Ace
 ========
 
-Ace Online editor utility for PHP
+Ace online editor utility for PHP
 ----------------------------------
 
 BEAR.AceはオンラインエディターAceのユーティリティです。
