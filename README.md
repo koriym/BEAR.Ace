@@ -4,42 +4,42 @@ BEAR.Ace
 Ace online editor utility for PHP
 ----------------------------------
 
+BEAR.Ace is an Ace utility for PHP. ([Ace](https://github.com/ajaxorg/ace) is a standalone code editor written in JavaScript.)
+It enables you to use an editor via a web service or to fix syntax errors on the fly.
+
 BEAR.AceはオンラインエディターAceのユーティリティです。
 エディターwebサービスやシンタックスエラーのオンライン修正が可能です。
-
-BEAR.Ace is the Ace utility for PHP. ([Ace](https://github.com/ajaxorg/ace) is a standalone code editor written in JavaScript. )
-It enable to start online editor web service, fix syntax error on the spot.
 
 Getting started
 ===============
 
-Start online editor web service.  
+Start the online editor web service.  
 
 ```
 $ cd BEAR.Ace/web
 $ php -S localhost:8090 index.php
 ```
 
-You can browse file content with 'file' and 'line' (optional) query.    
+You can now browse file content using the 'file' and 'line' (optional) query.    
 
 ![Editor](https://raw.github.com/koriym/BEAR.Ace/gh-pages/assets/editor.png)
 
-You can aslo save when you have write access to the web server. It supports save shortcut keys for Windows(Ctl+S) / OSX(Cmd+S).
+You can also save the file you are editing when you have write access to the web server. It supports save shortcut keys for Windows(Ctl+S) and OSX(Cmd+S).
 
 Sample Code
 -----------
 
-Get the HTML to display the editor.
+Getting HTML to display in the editor.
 
 ```php
 $html = (string)(new Editor)->setRootPath($rootPath)->setPath($file)->setLine($line);
 ```
 
-You can specify $file in absolute path or relative path from $rootPath.
-You will not be able to access the files at higher than $rootPath for security reason.
+You can specify a `$file` as an absolute path or as a relative path from `$rootPath`.
+Files higher than `$rootPath` are not accessible for security reasons.
 
 
-You can start online service in this code.
+Starting the online service is simple using the following code.
 ```php
 try {
     $editor = (new Editor)->setRootPath($rootPath)->handle($_GET, $_POST, $_SERVER);
@@ -49,11 +49,11 @@ try {
     echo $e->getCode();
 }
 ```
-You can find more sample code in /docs/ folder.
+More sample code can be found in the /docs/ directory.
 
 Syntax Error Editor
 -------------------
-When you register an error handler, you can fix on the place to not only display an error when the Syntax Error.Reload is automatically when you save, it will minimize the time and frustration by careless mistake.
+Once an error handler has been registered, when a syntax error occurs, you can not only display the error but make a fix in the browser on the fly. The browser is then automatically reloaded for you upon save. This feature can really minimize the time and frustration caused by simple careless mistakes.
 
 ```php
 (new \BEAR\Ace\ErrorEditor)->registerSyntaxErrorEdit();
@@ -62,7 +62,7 @@ When you register an error handler, you can fix on the place to not only display
 
 edit();
 -------------------
-You can see file content in an editor in the edit function. Specify the object or file path in the argument.
+You can also view file content in the editor by using the edit function. Just specify the object or file path in the argument.
 
 ```php
 $file = __DIR__ . 'file.php';
@@ -76,16 +76,16 @@ edit($a);
 
 xdebug.file_link_format
 -----------------------
-You can link to online editor the file name of the stack trace in this ini configuration of xdebug.
+The online editor can be linked to in the stack trace file name using the following ini configuration of xdebug.
 
 ```php
 xdebug.file_link_format=localhost:8090/?file=%f&line=$l
 ```
 
-Symfony integration for sytanx error editor
+Syntax Error Integration in Symfony2
 -------------------------------------------
 
-1) add "bear / ace" to composer.json, then install it with composer command.
+1) Add "bear / ace" to composer.json, then install it with the composer command.
 ```php
     "require": {
         ...
@@ -96,7 +96,7 @@ Symfony integration for sytanx error editor
 $ composer update bear/ace
 ```
 
-2) register a syntax error editor in web/app_dev.php.
+2) Register a syntax error editor in web/app_dev.php.
 ```php
 
 require_once __DIR__.'/../app/AppKernel.php';
@@ -108,7 +108,7 @@ require_once __DIR__.'/../app/AppKernel.php';
 $kernel = new AppKernel('dev', true);
 ```
 
-3) That's it ! You can fix the syntax error on the spot.
+3) That's it ! You can now fix syntax errors on the spot.
 
 Requirements
 ------------
