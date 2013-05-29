@@ -19,7 +19,7 @@
 
         <header>
           <h1>BEAR.Ace</h1>
-          <h2>Ace online editor utility</h2>
+          <h2>Ace online editor utility for PHP</h2>
         </header>
 
         <section id="downloads" class="clearfix">
@@ -31,13 +31,19 @@
         <hr>
 
         <section id="main_content">
-          <h3>BEAR.Ace</h3>
+          <p>BEAR.Ace is an Ace utility for PHP. (Ace is a standalone code editor written in JavaScript.) It enables you to use an editor via a web service or to fix syntax errors on the fly.</p>
 
-<p>BEAR.AceはAceオンラインエディターをPHPから使いやすくしたユーティリティーです。オンラインエディタを簡単に設置することができます。またxdebugの機能を使ってエラーをAceへのリンクで表示したり、Syntaxエラーを検知するとそのAceエディタがそのURLまま開き、編集することができます。保存すると再読み込みが行われ、ケアレスミスの修正を最速で行えます。</p>
+<p>BEAR.AceはオンラインエディターAceのユーティリティです。 エディターwebサービスやシンタックスエラーのオンライン修正が可能です。</p>
 
-<pre><code>$ cd BEAR.Ace
-$ git fetch origin
-$ git checkout gh-pages
+<p><img src="https://raw.github.com/koriym/BEAR.Ace/gh-pages/assets/editor.png" alt="bear/ace"></p>
+
+<h1>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h1>
+
+<p>Start the online editor web service.</p>
+
+<pre><code>$ cd BEAR.Ace/web
+$ php -S localhost:8090 index.php
 </code></pre>
         </section>
 
