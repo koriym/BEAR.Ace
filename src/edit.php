@@ -8,8 +8,11 @@ use BEAR\Ace\Editor;
 
 /**
  * Ace online editor
+ * 
+ * @param mixed $target file path or object
+ * @param bool  $return
  *
- * @param $target file path or object
+ * @return string
  */
 function edit($target, $return = false)
 {

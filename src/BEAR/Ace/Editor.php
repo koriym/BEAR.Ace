@@ -62,6 +62,8 @@ class Editor
      * Enable instant reload after save
      *
      * @param bool $enableReloadAfterSave
+     *
+     * @return $this
      */
     public function enableReloadAfterSave($enableReloadAfterSave = true)
     {
@@ -160,9 +162,8 @@ class Editor
     /**
      * @param $path
      *
-     * @return Editor
-     * @throws \OutOfRangeException
-     * @throws \InvalidArgumentException
+     * @return $this
+     * @throws Exception
      */
     public function setPath($path)
     {
@@ -237,8 +238,10 @@ class Editor
     }
 
     /**
-     * @param $object
+     * @param      $object
+     * @param null $method
      *
+     * @return $this
      * @throws Exception
      */
     public function setObject($object, $method  = null)
