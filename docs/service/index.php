@@ -1,6 +1,6 @@
 <?php
 
-require dirname(dirname(__DIR__)) . '/vendor/autoload.php';
+require dirname(dirname(__DIR__)) . '/src.php';
 
 use BEAR\Ace\Editor;
 use BEAR\Ace\Exception;
