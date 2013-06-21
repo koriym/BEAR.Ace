@@ -72,13 +72,13 @@ return <<<EOT
                 if (mode == 'reset') {
                     // reset
                     jQuery(label).html('SAVE').css('background-color', 'gray');
-                } elseif (mode == 'changed') {
+                } else if (mode == 'changed') {
                     // change
                     jQuery(label).html('SAVE').css('background-color', 'green');
-                } elseif (mode == 'readonly') {
+                } else if (mode == 'readonly') {
                     // change
                     jQuery(label).html('Read Only').css('background-color', 'gray');
-                } elseif (mode == 'save') {
+                } else if (mode == 'save') {
                     jQuery(label).html('Saving...').css('background-color', 'red').fadeOut().fadeIn('slow', function() {
                         jQuery(label).html('SAVE').css('background-color', 'gray');
                     });
