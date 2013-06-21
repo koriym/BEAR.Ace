@@ -69,6 +69,7 @@ class ErrorEditor
         if ($isBearAceSave) {
             try {
                 $post = $post ?: $_POST;
+                /** @noinspection PhpExpressionResultUnusedInspection */
                 (string)(new Editor)
                     ->setRootPath('/')
                     ->setPath($post['file'])
