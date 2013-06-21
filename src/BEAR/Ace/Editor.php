@@ -81,7 +81,7 @@ class Editor
         $line = $this->line;
         $relativePath = $this->path;
         // set variable for view
-        $view = [];
+        $view = array();
         $view['file'] = $fullPath;
         $view['file_path'] = $relativePath;
         $view['line'] = $line;
@@ -249,7 +249,8 @@ class Editor
         if (! is_object($object)) {
             throw new Exception('not object');
         }
-        $file = (new \ReflectionObject($object))->getFileName();
+        $ref = new \ReflectionObject($object);
+        $file = $ref->getFileName();
         $this->setPath($file);
 
         return $this;

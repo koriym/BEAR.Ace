@@ -31,7 +31,7 @@ class EditorTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidPath()
     {
-        $html = (string)$this->editor->setRootPath('/')->setPath('not_exists.php');
+        (string)$this->editor->setRootPath('/')->setPath('not_exists.php');
     }
 
     public function testAbsolutePath()
@@ -72,24 +72,24 @@ class EditorTest extends \PHPUnit_Framework_TestCase
 
     public function testHandleLoad()
     {
-        $get = [
+        $get = array(
             'file' => 'Mock/bar.txt',
             'line' => 1
-        ];
-        $post = [];
-        $server = ['REQUEST_METHOD' => 'GET'];
+        );
+        $post = array();
+        $server = array('REQUEST_METHOD' => 'GET');
         $html = (string)$this->editor->setRootPath(__DIR__)->handle($get, $post, $server);
         $this->assertContains('<pre id="editor">{this is bar}</pre>', $html);
     }
 
-    public function testHandleLoadWithAboslutePath()
+    public function testHandleLoadWithAbsolutePath()
     {
-        $get = [
+        $get = array(
             'file' => __DIR__ . '/Mock/bar.txt',
             'line' => 1
-        ];
-        $post = [];
-        $server = ['REQUEST_METHOD' => 'GET'];
+        );
+        $post = array();
+        $server = array('REQUEST_METHOD' => 'GET');
         $html = (string)$this->editor->setRootPath(__DIR__)->handle($get, $post, $server);
         $this->assertContains('<pre id="editor">{this is bar}</pre>', $html);
     }
@@ -97,24 +97,24 @@ class EditorTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \BEAR\Ace\Exception
      */
-    public function testHandleLoadWithAboslutePathNotExists()
+    public function testHandleLoadWithAbsolutePathNotExists()
     {
-        $get = [
+        $get = array(
             'file' => __DIR__ . '/Mock/not_exists.txt'
-        ];
-        $post = [];
-        $server = ['REQUEST_METHOD' => 'GET'];
+        );
+        $post = array();
+        $server = array('REQUEST_METHOD' => 'GET');
         (string)$this->editor->setRootPath(__DIR__)->handle($get, $post, $server);
     }
 
     public function testHandleSave()
     {
-        $get = [];
-        $post = [
+        $get = array();
+        $post = array(
             'file' => 'Mock/tmp.txt',
             'contents' => 'new save contents'
-        ];
-        $server = ['REQUEST_METHOD' => 'POST'];
+        );
+        $server = array('REQUEST_METHOD' => 'POST');
         $result = (string)$this->editor->setRootPath(__DIR__)->handle($get, $post, $server);
         $saved = file_get_contents(__DIR__ . '/Mock/tmp.txt');
         $this->assertSame('new save contents', $saved);
@@ -138,11 +138,11 @@ class EditorTest extends \PHPUnit_Framework_TestCase
      */
     public function testHandleLoadWithoutFile()
     {
-        $get = [
+        $get = array(
             'line' => 1
-        ];
-        $post = [];
-        $server = ['REQUEST_METHOD' => 'GET'];
+        );
+        $post = array();
+        $server = array('REQUEST_METHOD' => 'GET');
         (string)$this->editor->setRootPath(__DIR__)->handle($get, $post, $server);
     }
 

@@ -41,7 +41,8 @@ class ErrorEditor
             $rootPath = '/';
             $message .= " on line {$line} in";
             $selfUrl = "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]. ':' . $_SERVER['REMOTE_PORT'];
-            echo (new Editor)
+            $editor = new Editor;
+            echo $editor
                 ->setRootPath($rootPath)
                 ->setPath($file)
                 ->setLine($line)
@@ -70,7 +71,8 @@ class ErrorEditor
             try {
                 $post = $post ?: $_POST;
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                (string)(new Editor)
+                $editor = new Editor;
+                (string)$editor
                     ->setRootPath('/')
                     ->setPath($post['file'])
                     ->save($post['contents']);
