@@ -31,7 +31,7 @@ php composer.phar create-project bear/ace BEAR.Ace
 php composer.phar require bear/ace:~1.0
 ```
 
-Start the online editor web service.  
+### Start the online editor web service
 
 ```
 $ cd BEAR.Ace/web
