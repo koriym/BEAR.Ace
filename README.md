@@ -1,44 +1,60 @@
 BEAR.Ace
 ========
 
-Ace Online editor utility for PHP
+Ace online editor utility for PHP
 ----------------------------------
 
-[Ace](https://github.com/ajaxorg/ace) is a standalone code editor written in JavaScript. BEAR.Ace is the PHP utility for Ace.  
-[Ace](https://github.com/ajaxorg/ace) はJavaScriptでかかれたスタンドアロンのコードエディターです。 BEAR.Ace はPHPでAceを便利に使うためのユーティリティです。
+BEAR.Ace is an Ace utility for PHP. ([Ace](https://github.com/ajaxorg/ace) is a standalone code editor written in JavaScript.)
+It enables you to use an editor via a web service or to fix syntax errors on the fly.
+
+BEAR.AceはオンラインエディターAceのユーティリティです。
+エディターwebサービスやシンタックスエラーのオンライン修正が可能です。
+
+### Installing via Composer
+
+The recommended way to install BEAR.Ace is through [Composer](http://getcomposer.org).
+
+```bash
+# Install Composer
+curl -sS https://getcomposer.org/installer | php
+
+# Install as stand alone editor
+php composer.phar create-project bear/ace BEAR.Ace
+
+# Add BEAR.Ace as a dependency
+php composer.phar require bear/ace:~1.0
+```
 
 Getting started
 ===============
 
-Start online editor web service.  
-オンラインエディタを起動します。
+Start the online editor web service.  
 
 ```
 $ cd BEAR.Ace/web
 $ php -S localhost:8090 index.php
 ```
 
- Access editor with 'file' (and 'line') query.    
- file,lineクエリーを使ってファイルにアクセスできます。
+You can now browse file content using the 'file' and 'line' (optional) query.    
 
 ![Editor](https://raw.github.com/koriym/BEAR.Ace/gh-pages/assets/editor.png)
 
-You can save the document if web server has permission to save.  
-webサーバーに書き込み権限があるときは保存も行えます。Windows/OSXそれぞれのショートカットキーにも対応しています。
+You can also save the file you are editing when you have write access to the web server. It supports save shortcut keys for Windows(Ctl+S) and OSX(Cmd+S).
 
-Configuration
--------------
+Sample Code
+-----------
 
-エディタを表示するためのHTMLを取得します。
+Getting HTML to display in the editor.
 
 ```php
 $html = (string)(new Editor)->setRootPath($rootPath)->setPath($file)->setLine($line);
 ```
-$fileは$rootPathからの相対パス、または絶対パスを指定できます。また$rootPathより上位のファイルにはアクセスできません。
+
+You can specify a `$file` as an absolute path or as a relative path from `$rootPath`.
+Files higher than `$rootPath` are not accessible for security reasons.
 
 
-オンラインエディターサービスを開始します。
-
+Starting the online service is simple using the following code.
 ```php
 try {
     $editor = (new Editor)->setRootPath($rootPath)->handle($_GET, $_POST, $_SERVER);
@@ -48,10 +64,11 @@ try {
     echo $e->getCode();
 }
 ```
+More sample code can be found in the /docs/ directory.
 
 Syntax Error Editor
 -------------------
-エラーハンドラーを登録すると、Syntax Errorの時にエラー表示するだけでなくそのその場で修正ができます。保存をするとリロードが自動でされ、ケアレスミスによるフラストレーションと時間を最小化します。
+Once an error handler has been registered, when a syntax error occurs, you can not only display the error but make a fix in the browser on the fly. The browser is then automatically reloaded for you upon save. This feature can really minimize the time and frustration caused by simple careless mistakes.
 
 ```php
 (new \BEAR\Ace\ErrorEditor)->registerSyntaxErrorEdit();
@@ -60,8 +77,7 @@ Syntax Error Editor
 
 edit();
 -------------------
-
-edit関数でファイルをエディターで見る事ができます。引き数にはファイルパスまたはオブジェクトを指定します。
+You can also view file content in the editor by using the edit function. Just specify the object or file path in the argument.
 
 ```php
 $file = __DIR__ . 'file.php';
@@ -75,12 +91,40 @@ edit($a);
 
 xdebug.file_link_format
 -----------------------
-xdebugのini設定でstack traceのファイル名をオンラインエディターにリンクすることができます。
+The online editor can be linked to in the stack trace file name using the following ini configuration of xdebug.
 
 ```php
-xdebug.file_link_format=localhost:8070/?file=%f&line=$l
+xdebug.file_link_format=localhost:8090/?file=%f&line=$l
 ```
 
+Syntax Error Integration in Symfony2
+-------------------------------------------
+
+1) Add "bear / ace" to composer.json, then install it with the composer command.
+```php
+    "require": {
+        ...
+        "bear/ace": "*"
+    },
+```
+```bash
+$ composer update bear/ace
+```
+
+2) Register a syntax error editor in web/app_dev.php.
+```php
+
+require_once __DIR__.'/../app/AppKernel.php';
+// after this line
+
+(new \BEAR\Ace\ErrorEditor)->registerSyntaxErrorEdit();
+
+// before this line
+$kernel = new AppKernel('dev', true);
+```
+
+3) That's it ! You can now fix syntax errors on the spot.
+
 Requirements
----------
- * PHP 5.4+
+------------
+ * PHP 5.3+

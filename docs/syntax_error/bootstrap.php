@@ -1,7 +1,11 @@
 <?php
 
 // loader
-require dirname(dirname(__DIR__)) . '/vendor/autoload.php';
+require dirname(dirname(__DIR__)) . '/src.php';
+
+use BEAR\Ace\ErrorEditor;
 
 // register error editor
-(new \BEAR\Ace\ErrorEditor)->registerSyntaxErrorEdit();
+
+$editor = new ErrorEditor;
+$editor->registerSyntaxErrorEdit();

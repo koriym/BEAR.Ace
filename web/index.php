@@ -21,7 +21,8 @@ use BEAR\Ace\Exception;
 $rootPath = __DIR__;
 
 try {
-    $html = (string)(new Editor)->setRootPath($rootPath)->handle($_GET, $_POST, $_SERVER);
+    $editor = new Editor;
+    $html = (string)$editor->setRootPath($rootPath)->handle($_GET, $_POST, $_SERVER);
     echo $html;
 } catch (Exception $e) {
     http_response_code($e->getCode());

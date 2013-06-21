@@ -8,8 +8,11 @@ use BEAR\Ace\Editor;
 
 /**
  * Ace online editor
+ * 
+ * @param mixed $target file path or object
+ * @param bool  $return
  *
- * @param $target file path or object
+ * @return string
  */
 function edit($target, $return = false)
 {
@@ -17,11 +20,12 @@ function edit($target, $return = false)
         ob_end_clean();
     }
 
+    $editor = new Editor;
     if (is_object($target)) {
-        $html = (new Editor)->setObject($target);
+        $html = $editor->setObject($target);
     }
     if (is_string($target) && file_exists($target)) {
-        $html = (new Editor)->setPath($target);
+        $html = $editor->setPath($target);
     }
     if ($return) {
         return (string)$html;

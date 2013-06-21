@@ -62,6 +62,8 @@ class Editor
      * Enable instant reload after save
      *
      * @param bool $enableReloadAfterSave
+     *
+     * @return $this
      */
     public function enableReloadAfterSave($enableReloadAfterSave = true)
     {
@@ -79,7 +81,7 @@ class Editor
         $line = $this->line;
         $relativePath = $this->path;
         // set variable for view
-        $view = [];
+        $view = array();
         $view['file'] = $fullPath;
         $view['file_path'] = $relativePath;
         $view['line'] = $line;
@@ -160,9 +162,8 @@ class Editor
     /**
      * @param $path
      *
-     * @return Editor
-     * @throws \OutOfRangeException
-     * @throws \InvalidArgumentException
+     * @return $this
+     * @throws Exception
      */
     public function setPath($path)
     {
@@ -237,8 +238,10 @@ class Editor
     }
 
     /**
-     * @param $object
+     * @param      $object
+     * @param null $method
      *
+     * @return $this
      * @throws Exception
      */
     public function setObject($object, $method  = null)
@@ -246,7 +249,8 @@ class Editor
         if (! is_object($object)) {
             throw new Exception('not object');
         }
-        $file = (new \ReflectionObject($object))->getFileName();
+        $ref = new \ReflectionObject($object);
+        $file = $ref->getFileName();
         $this->setPath($file);
 
         return $this;

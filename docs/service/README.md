@@ -10,5 +10,5 @@ $ php -S localhost:8090 index.php
 
 access the file with 'file' query
 ```
-localhost:8090/?file=sample
+localhost:8090/?file=/full/path/to/file
 ```
