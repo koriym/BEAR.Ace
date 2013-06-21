@@ -10,6 +10,21 @@ It enables you to use an editor via a web service or to fix syntax errors on the
 BEAR.AceはオンラインエディターAceのユーティリティです。
 エディターwebサービスやシンタックスエラーのオンライン修正が可能です。
 
+### Installing via Composer
+
+The recommended way to install BEAR.Ace is through [Composer](http://getcomposer.org).
+
+```bash
+# Install Composer
+curl -sS https://getcomposer.org/installer | php
+
+# Install as stand alone editor
+php composer.phar create-project bear/ace BEAR.Ace
+
+# Add BEAR.Ace as a dependency
+php composer.phar require bear/ace:~1.0
+```
+
 Getting started
 ===============
 
