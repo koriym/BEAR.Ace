@@ -10,9 +10,6 @@ It enables you to use an editor via a web service or to fix syntax errors on the
 BEAR.AceはオンラインエディターAceのユーティリティです。
 エディターwebサービスやシンタックスエラーのオンライン修正が可能です。
 
-[![Latest Stable Version](https://poser.pugx.org/bear/ace/v/stable.png)](https://packagist.org/packages/bear/ace)
-[![Build Status](https://secure.travis-ci.org/koriym/BEAR.Ace.png?branch=master)](http://travis-ci.org/koriym/BEAR.Ace)
-
 Getting started
 ===============
 
@@ -28,7 +25,7 @@ curl -sS https://getcomposer.org/installer | php
 php composer.phar create-project bear/ace BEAR.Ace
 
 # Add BEAR.Ace as a dependency
-php composer.phar require bear/ace:~1.0
+php composer.phar require bear/ace:^1.0
 ```
 
 ### Start the online editor web service
@@ -39,6 +36,8 @@ $ php -S localhost:8090 index.php
 ```
 
 You can now browse file content using the 'file' and 'line' (optional) query.    
+
+Open [http://localhost:8090/?file=hello.php](http://localhost:8090/?file=hello.php)
 
 ![Editor](https://raw.github.com/koriym/BEAR.Ace/gh-pages/assets/editor.png)
 
